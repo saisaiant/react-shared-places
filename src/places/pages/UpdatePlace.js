@@ -73,6 +73,7 @@ const UpdatePlace = () => {
         }),
         {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
       histroy.push("/" + auth.userId + "/places");

@@ -8,7 +8,7 @@ const ImageUpload = (props) => {
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
 
-  const filePicker = useRef();
+  const filePickerRef = useRef();
 
   useEffect(() => {
     if (!file) {
@@ -25,7 +25,7 @@ const ImageUpload = (props) => {
     let pickedFile;
     let fileIsValid = isValid;
 
-    if (event.target.files || event.target.files.length === 1) {
+    if (event.target.files && event.target.files.length === 1) {
       pickedFile = event.target.files[0];
       setFile(pickedFile);
       setIsValid(true);
@@ -38,17 +38,17 @@ const ImageUpload = (props) => {
   };
 
   const pickImageHandler = () => {
-    filePicker.current.click();
+    filePickerRef.current.click();
   };
 
   return (
     <div className="form-control">
       <input
         id={props.id}
-        ref={filePicker}
+        ref={filePickerRef}
         style={{ display: "none" }}
         type="file"
-        accept=".jpg, .png, .jpeg"
+        accept=".jpg,.png,.jpeg"
         onChange={pickHandler}
       />
       <div className={`image-upload ${props.center && "center"}`}>
